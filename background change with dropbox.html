@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>colour</title>
+  </head>
+  <body>
+    <label for="colour">Choose a colour:</label>
+
+    <select id="colour">
+      <option value="white">Choose a BGColour</option>
+      <hr />
+      <option value="red">red</option>
+      <hr />
+      <option value="violet">violet</option>
+      <hr />
+      <option value="indigo">indigo</option>
+      <hr />
+      <option value="blue">blue</option>
+      <hr />
+      <option value="green">green</option>
+      <hr />
+      <option value="yellow">yellow</option>
+      <hr />
+      <option value="orange">orange</option>
+    </select>
+    <script>
+      function changeBackgroundColor() {
+        let selectedColor = document.getElementById("colour").value;
+
+        document.body.style.backgroundColor = selectedColor;
+      }
+      document
+        .getElementById("colour")
+        .addEventListener("change", changeBackgroundColor);
+    </script>
+  </body>
+</html>
