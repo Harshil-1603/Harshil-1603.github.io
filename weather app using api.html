@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <h1 style="text-align: center">Weather App</h1>
+  </head>
+  <body>
+    <input
+      id="location"
+      type="text"
+      style="border-radius: 10px; padding-left: 10px"
+      placeholder="Enter your location"
+    />
+    <h1 class="temp">22°C</h1>
+    <h1 class="humidity">69%</h1>
+
+    <script>
+      const apiKey = "9210c79ca9ddc1f7a9086318cdb5123d";
+
+      document
+        .getElementById("location")
+        .addEventListener("change", checkweather);
+
+      async function fetchWeatherData(location) {
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${location}&appid=${apiKey}`;
+        const response = await fetch(apiUrl);
+        return response.json();
+      }
+
+      async function checkweather() {
+        const location = document.getElementById("location").value;
+        const data = await fetchWeatherData(location);
+
+        if (data.cod === 200) {
+          // Check if the API call was successful
+          document.querySelector(".temp").innerHTML = `${data.main.temp}°C`;
+          document.querySelector(
+            ".humidity"
+          ).innerHTML = `${data.main.humidity}%`;
+        } else {
+          document.querySelector(".temp").innerHTML = `Error: ${data.message}`;
+          document.querySelector(".humidity").innerHTML = `---`;
+        }
+      }
+    </script>
+  </body>
+</html>
